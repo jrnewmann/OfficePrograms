@@ -2,15 +2,15 @@
 """
 Created on Fri Mar 23 10:47:10 2018
 
-@authors: jrnewmann, rodrum
+@author: jrnewmann, rodrum
 """
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import numpy as np
 import csv
 
-# Class name
-class_name = 'Example Class'
+# Input class name
+class_name = 'Earth 103: Structural Geology'
 # Input file name
 input_file_name = 'ncol_test_data.csv'
 # Read CSV and just save percentages
@@ -38,14 +38,20 @@ median = round(np.median(percentages),2)
 print('Standard error={0}, Mean={1}, Median={2}'.format(sdr, mean, median))
 
 bins = 40 #set number of bins for histogram
+figx = 8
+figy = 6
+lowerx = 0 #set limits for graph
+upperx = 100
+lowery = 0
+uppery = 5
 
-plt.figure(figsize=(10,8))
+plt.figure(figsize=(figx,figy))
 plt.hist(percentages,bins,color='#39B21E',edgecolor='grey',linewidth=0.2)
 plt.xlabel('Grade (%)')
 plt.ylabel('Freq')
-plt.title('Earth 103 Grade Histogram')
-plt.xlim(0,100)
-plt.ylim(0,6) #adjust ylim to your data
+plt.title("%s Grade Distribtuion" %class_name)
+plt.xlim(lowerx,upperx)
+plt.ylim(lowery,uppery)
 
 tx = 20 #set x location of statistics text
 ty = 1  #set y location of stats
@@ -67,9 +73,9 @@ n = len(percentages)
 plt.text(tx,ty,'n =',horizontalalignment = 'right')
 plt.text(tx,ty,n)
 
-x = np.arange(-1,101)
+x = np.arange(lowerx,upperx+1)
 norm = mlab.normpdf(x,mean,sdr)
 
-plt.plot(x,norm*100,color='Black')
+plt.plot(x,norm*uppery*15,color='Black')
 
 plt.savefig('103Histogram.png')
