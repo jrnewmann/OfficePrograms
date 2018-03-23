@@ -4,6 +4,12 @@ Created on Thu Mar 15 11:40:14 2018
 
 @author: justin
 """
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Mar 23 10:47:10 2018
+
+@author: jrnewmann
+"""
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import numpy as np
@@ -12,17 +18,19 @@ import csv
 # Class name
 class_name = 'Example Class'
 # Input file name
-input_file_name = '103W18.csv'
+input_file_name = 'ncol_test_data.csv'
 # Read CSV and just save percentages
 percentages = []
 with open(input_file_name, newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',')
     count = 0
     for row in spamreader:
+        if count == 0:
+            #read header to find % col index
+            col = row.index("Course total (Percentage)") 
         if count > 0:
-            # row 5 is the one that has percentages
-            # TODO: find the row automatically
-            percentages.append(float(row[5].strip(' %')))
+            # col is the one that has above percentages
+            percentages.append(float(row[col].strip(' %')))
         count += 1
 print('Percentages are: \n{}'.format(percentages))
 
