@@ -7,19 +7,38 @@ Created on Thu Mar 15 11:40:14 2018
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import numpy as np
+import csv
 
-with open('Percents.txt', 'r+') as f: #change file name to your needs
-        lines = f.readlines()
-        newlines = [float(x[:-3]) for x in lines] #change value in brackets to fit your data
-        
-sdr = round(np.std(newlines),2)
-mean = round(np.average(newlines),2)
-median = round(np.median(newlines),2)
+# Class name
+class_name = 'Example Class'
+# Input file name
+input_file_name = '103W18.csv'
+# Read CSV and just save percentages
+percentages = []
+with open(input_file_name, newline='') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=',')
+    count = 0
+    for row in spamreader:
+        if count > 0:
+            # row 5 is the one that has percentages
+            # TODO: find the row automatically
+            percentages.append(float(row[5].strip(' %')))
+        count += 1
+print('Percentages are: \n{}'.format(percentages))
 
-bins = 20 #set number of bins for histogram
+# with open('Percents.txt', 'r+') as f: #change file name to your needs
+#         lines = f.readlines()
+#         newlines = [float(x[:-3]) for x in lines] #change value in brackets to fit your data
+
+sdr = round(np.std(percentages),2)
+mean = round(np.average(percentages),2)
+median = round(np.median(percentages),2)
+print('Standard error={0}, Mean={1}, Median={2}'.format(sdr, mean, median))
+
+bins = 40 #set number of bins for histogram
 
 plt.figure(figsize=(10,8))
-plt.hist(newlines,bins,color='#39B21E',edgecolor='grey',linewidth=0.2)
+plt.hist(percentages,bins,color='#39B21E',edgecolor='grey',linewidth=0.2)
 plt.xlabel('Grade (%)')
 plt.ylabel('Freq')
 plt.title('Earth 103 Grade Histogram')
@@ -42,7 +61,7 @@ plt.text(tx,ty+2*ti,mean)
 plt.text(tx,ty+ti,'Bins =',horizontalalignment = 'right')
 plt.text(tx,ty+ti,bins)
 
-n = len(newlines)
+n = len(percentages)
 plt.text(tx,ty,'n =',horizontalalignment = 'right')
 plt.text(tx,ty,n)
 
