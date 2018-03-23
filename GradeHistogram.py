@@ -12,7 +12,7 @@ import csv
 # Input class name
 class_name = 'Earth 103: Structural Geology'
 # Input file name
-input_file_name = 'ncol_test_data.csv'
+input_file_name = 'Earth103grades.csv'
 # Read CSV and just save percentages
 percentages = []
 with open(input_file_name, newline='') as csvfile:
@@ -78,4 +78,4 @@ norm = mlab.normpdf(x,mean,sdr)
 
 plt.plot(x,norm*uppery*15,color='Black')
 
-plt.savefig('103Histogram.png')
+plt.savefig()
