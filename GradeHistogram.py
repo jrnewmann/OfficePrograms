@@ -12,7 +12,7 @@ import csv
 # Input class name
 class_name = 'Earth 103: Structural Geology'
 # Input file name
-input_file_name = 'Earth103grades.csv'
+input_file_name = '103W18.csv'
 # Read CSV and just save percentages
 percentages = []
 with open(input_file_name, newline='') as csvfile:
@@ -27,10 +27,6 @@ with open(input_file_name, newline='') as csvfile:
             percentages.append(float(row[col].strip(' %')))
         count += 1
 print('Percentages are: \n{}'.format(percentages))
-
-# with open('Percents.txt', 'r+') as f: #change file name to your needs
-#         lines = f.readlines()
-#         newlines = [float(x[:-3]) for x in lines] #change value in brackets to fit your data
 
 sdr = round(np.std(percentages),2)
 mean = round(np.average(percentages),2)
@@ -78,4 +74,4 @@ norm = mlab.normpdf(x,mean,sdr)
 
 plt.plot(x,norm*uppery*15,color='Black')
 
-plt.savefig()
+plt.savefig(input_file_name[:-4] + '.png')
