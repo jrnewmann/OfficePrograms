@@ -1,11 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar 15 11:40:14 2018
-
-@author: justin
-"""
-# -*- coding: utf-8 -*-
-"""
 Created on Fri Mar 23 10:47:10 2018
 
 @author: jrnewmann
