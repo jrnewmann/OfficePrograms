@@ -2,7 +2,7 @@
 """
 Created on Fri Mar 23 10:47:10 2018
 
-@author: jrnewmann, rodrum
+@authors: jrnewmann, rodrum
 """
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
